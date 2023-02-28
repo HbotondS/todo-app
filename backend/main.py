@@ -4,8 +4,8 @@ from pymongo import MongoClient
 
 
 app = Flask(__name__)
-cors = CORS(app, origins=["http://localhost:4200"])
-client = MongoClient("mongodb://localhost:60000/")
+cors = CORS(app, origins=["http://frontend:4200"])
+client = MongoClient("mongodb://mongodb:27017/")
 db = client['todo-app']
 
 @app.route('/', methods=['GET'])

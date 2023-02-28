@@ -5,7 +5,7 @@ import { Todo } from './todo.model';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
-  private readonly apiUrl = 'http://127.0.0.1:5000/';
+  private readonly apiUrl = 'http://backend:5000';
 
   constructor(private http: HttpClient) {}
 
