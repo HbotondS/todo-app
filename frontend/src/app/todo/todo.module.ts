@@ -3,7 +3,7 @@ import { TodoPageRoutingModule } from './todo-routing.module';
 import { TodoPage } from './todo.component';
 
 @NgModule({
-  imports: [TodoPageRoutingModule],
-  declarations: [TodoPage]
+  imports: [ TodoPageRoutingModule ],
+  declarations: [ TodoPage ]
 })
 export class TodoPageModule {}
