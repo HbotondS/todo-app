@@ -2,13 +2,16 @@ version: '3'
 
 services:
   frontend:
+    container_name: frontend
     build: ./frontend
     ports:
       - 4200:4200
     networks:
-      - todo-app-network
+      todo-app-network:
+        ipv4_address: 192.168.0.2
 
   mongodb:
+    container_name: mongodb
     build: ./mongodb
     ports:
       - 60000:27017
@@ -16,17 +19,23 @@ services:
       - ./mongodb/create-schema.js:/docker-entrypoint-initdb.d/create-schema.js:ro # ro - read-only
     restart: unless-stopped
     networks:
-      - todo-app-network
+      todo-app-network:
+        ipv4_address: 192.168.0.3
   
   backend:
+    container_name: backend-flask
     depends_on:
       - mongodb
     build: ./backend
     ports:
       - 5000:5000
     networks:
-      - todo-app-network
+      todo-app-network:
+        ipv4_address: 192.168.0.4
 
 networks:
   todo-app-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24

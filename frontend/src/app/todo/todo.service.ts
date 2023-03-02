@@ -5,11 +5,9 @@ import { Todo } from './todo.model';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
-  private readonly apiUrl = 'http://backend:5000';
-
   constructor(private http: HttpClient) {}
 
   getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${this.apiUrl}/getTodos`);
+    return this.http.get<Todo[]>(`api/flask/getTodos`);
   }
 }
