@@ -33,6 +33,18 @@ services:
       todo-app-network:
         ipv4_address: 192.168.0.4
 
+  backend-spring:
+    container_name: backend-spring
+    depends_on:
+      - mongodb
+    build: ./backend-spring
+    ports:
+      - 8080:8080
+    networks:
+      todo-app-network:
+        ipv4_address: 192.168.0.5
+
+
 networks:
   todo-app-network:
     driver: bridge
