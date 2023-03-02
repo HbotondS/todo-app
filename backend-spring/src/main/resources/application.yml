@@ -3,4 +3,21 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: app-todo
+      database: todo-app
+
+graphql:
+  # only for development (easier testing)
+  playground:
+    tabs:
+      - name: Get all Todos
+        query: classpath:playground/getTodos.graphql
+
+---
+
+spring:
+  profiles: docker
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      database: todo-app
