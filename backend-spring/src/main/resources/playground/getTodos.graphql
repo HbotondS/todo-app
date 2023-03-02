@@ -1,0 +1,6 @@
+query GET_TODOS {
+    getTodos {
+        id,
+        name
+    }
+}
