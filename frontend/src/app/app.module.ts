@@ -3,13 +3,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { InMemoryCache } from '@apollo/client/core';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
-import { HttpLink } from "apollo-angular/http";
-import { environment } from "../environments/environment";
-
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -28,9 +26,9 @@ import { environment } from "../environments/environment";
           link: httpLink.create({
             uri: environment.apiUrl
           })
-        }
+        };
       },
-      deps: [HttpLink]
+      deps: [ HttpLink ]
     }
   ],
   bootstrap: [ AppComponent ]

@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { Apollo } from "apollo-angular";
-import gql from "graphql-tag";
-import { map, Observable } from "rxjs";
-import { Todo } from "../../todo.model";
+import { Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+import { map, Observable } from 'rxjs';
+import { Todo } from '../../todo.model';
 
-@Injectable({providedIn: "root"})
+@Injectable({ providedIn: 'root' })
 export class TodoService {
   constructor(private apollo: Apollo) {}
 
@@ -22,5 +22,4 @@ export class TodoService {
       map((response) => response.data.getTodos)
     );
   }
-
 }
