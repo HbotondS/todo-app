@@ -1,9 +1,5 @@
 {
-  "/api/flask": {
-    "target": "http://192.168.0.4:5000",
-    "secure": false
-  },
-  "/api/spring": {
+  "/graphql": {
     "target": "http://192.168.0.5:8080",
     "secure": false
   }
