@@ -10,6 +10,6 @@ export class TodoPage implements OnInit {
   constructor(private service: TodoService) {}
 
   ngOnInit(): void {
-    this.service.getTodos().subscribe(result => console.log(result.data.getTodos));
+    this.service.getTodos().subscribe(todos => console.log(todos));
   }
 }

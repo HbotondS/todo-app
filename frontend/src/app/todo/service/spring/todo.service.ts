@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Apollo } from "apollo-angular";
 import gql from "graphql-tag";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
+import { Todo } from "../../todo.model";
 
 @Injectable({providedIn: "root"})
 export class TodoService {
   constructor(private apollo: Apollo) {}
 
-  getTodos(): Observable<any> {
-    return this.apollo.query({
+  getTodos(): Observable<Todo[]> {
+    return this.apollo.query<any>({
       query: gql`
         query {
           getTodos {
@@ -17,7 +18,9 @@ export class TodoService {
           }
         }
       `
-    });
+    }).pipe(
+      map((response) => response.data.getTodos)
+    );
   }
 
 }
