@@ -1,1 +1,6 @@
 <p>todo works!</p>
+<ul>
+  <li *ngFor="let todo of allTodos$ | async">
+    {{ todo.name }}
+  </li>
+</ul>

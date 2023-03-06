@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from './service/spring/todo.service';
+import { Store } from '@ngrx/store';
+import { loadTodos } from '../state/todo/todo.actions';
+import { selectAllTodos } from '../state/todo/todo.selectors';
+import { Todo } from './todo.model';
 
 @Component({
   selector: 'app-todo',
@@ -7,9 +10,11 @@ import { TodoService } from './service/spring/todo.service';
   styleUrls: [ './todo.component.scss' ]
 })
 export class TodoPage implements OnInit {
-  constructor(private service: TodoService) {}
+  public allTodos$ = this.store.select<Todo[]>(selectAllTodos);
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.service.getTodos().subscribe(todos => console.log(todos));
+    this.store.dispatch(loadTodos());
   }
 }
