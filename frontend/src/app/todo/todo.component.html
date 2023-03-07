@@ -1,6 +1,5 @@
-<p>todo works!</p>
-<ul>
-  <li *ngFor="let todo of allTodos$ | async">
+<mat-list role="list">
+  <mat-list-item *ngFor="let todo of allTodos$ | async" role="listitem">
     {{ todo.name }}
-  </li>
-</ul>
+  </mat-list-item>
+</mat-list>

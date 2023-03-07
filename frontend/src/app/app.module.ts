@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TodoEffects } from './state/todo/todo.effects';
 import { AppState } from './state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -26,7 +27,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     EffectsModule.forRoot([ TodoEffects ]),
     StoreDevtoolsModule.instrument({
       maxAge: 10
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     {
