@@ -18,7 +18,7 @@ export class TodoPage implements OnInit {
     this.store.dispatch(loadTodos());
   }
 
-  deleteTodo(id: number) {
+  deleteTodo(id: number): void {
     // todo
   }
 }
