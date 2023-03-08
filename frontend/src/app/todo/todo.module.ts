@@ -6,9 +6,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
+import { MatLineModule } from "@angular/material/core";
 
 @NgModule({
-  imports: [ TodoPageRoutingModule, CommonModule, MatListModule, MatCardModule, MatButtonToggleModule, MatButtonModule ],
+  imports: [
+    TodoPageRoutingModule,
+    CommonModule,
+    MatListModule,
+    MatCardModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatLineModule
+  ],
   declarations: [ TodoPage ]
 })
 export class TodoPageModule {}

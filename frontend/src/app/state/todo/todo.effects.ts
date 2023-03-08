@@ -20,7 +20,6 @@ export class TodoEffects {
       ofType(loadTodos),
       switchMap(() =>
         this.service.getTodos().pipe(
-          tap(todos => console.log(todos)),
           map(todos => loadTodosSuccess({ todos })),
           catchError(error => of(loadTodosFailed({ error })))
         )

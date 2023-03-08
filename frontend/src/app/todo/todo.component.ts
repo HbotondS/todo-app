@@ -17,4 +17,8 @@ export class TodoPage implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadTodos());
   }
+
+  deleteTodo(id: number) {
+    // todo
+  }
 }
