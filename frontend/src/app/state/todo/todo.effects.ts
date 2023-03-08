@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 import { TodoService } from '../../todo/service/spring/todo.service';
-import { loadTodos, loadTodosFailed, loadTodosSuccess } from './todo.actions';
+import { deleteTodo, loadTodos, loadTodosFailed, loadTodosSuccess } from './todo.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
 
 @Injectable()
@@ -23,6 +23,15 @@ export class TodoEffects {
           map(todos => loadTodosSuccess({ todos })),
           catchError(error => of(loadTodosFailed({ error })))
         )
+      )
+    )
+  );
+
+  deleteTodo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteTodo),
+      switchMap(({ id }) =>
+        this.service.deleteTodo(id)
       )
     )
   );

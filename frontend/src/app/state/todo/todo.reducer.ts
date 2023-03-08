@@ -1,6 +1,6 @@
 import { Todo } from '../../todo/todo.model';
 import { createReducer, on } from '@ngrx/store';
-import { loadTodos, loadTodosFailed, loadTodosSuccess } from './todo.actions';
+import { deleteTodo, loadTodos, loadTodosFailed, loadTodosSuccess } from './todo.actions';
 
 export interface TodoState {
   todos: Todo[];
@@ -19,6 +19,10 @@ export const TodoReducer = createReducer(
   initialState,
   // Trigger loading the todos
   on(loadTodos, (state) => ({ ...state, status: 'loading' })),
+  on(deleteTodo, (state, { id }) => ({
+    ...state,
+    todos: state.todos.filter(todo => todo.id !== id)
+  })),
   on(loadTodosSuccess, (state, { todos }) => ({
     ...state,
     todos,
