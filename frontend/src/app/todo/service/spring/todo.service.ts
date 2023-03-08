@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Todo } from '../../todo.model';
 
 @Injectable({ providedIn: 'root' })
@@ -25,6 +25,15 @@ export class TodoService {
 
   deleteTodo(id: number): Observable<any> {
     console.log(id);
-    return of(null); // todo
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation DeleteTodoById($id: Int!) {
+          deleteTodo(id: $id)
+        }
+      `,
+      variables: {
+        id // pass the valid ID value
+      }
+    });
   }
 }

@@ -10,6 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 public class Todo {
     @Id
-    private String Id;
+    private Integer id;
     private String name;
 }

@@ -15,4 +15,13 @@ public class TodoService {
     public List<Todo> getAllTodos() {
         return this.repository.findAll();
     }
+
+    public boolean deleteTodo(Integer id) {
+        boolean isFound = this.repository.existsById(id);
+        if (isFound) {
+            this.repository.deleteById(id);
+        }
+
+        return isFound;
+    }
 }
