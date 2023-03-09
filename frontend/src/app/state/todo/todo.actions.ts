@@ -8,12 +8,21 @@ export const deleteTodo = createAction(
   props<{ id: number; }>()
 );
 
+export const deleteTodoSuccess = createAction(
+  '[Todo API] Delete Todo Success',
+);
+
+export const deleteTodoFailed = createAction(
+  '[Todo API] Delete Todo Failed',
+  props<{ error: string; }>()
+);
+
 export const loadTodosSuccess = createAction(
   '[Todo API] Todo Load Success',
   props<{ todos: Todo[]; }>()
 );
 
 export const loadTodosFailed = createAction(
-  '[Todo API] Todo Load Failure',
+  '[Todo API] Todo Load Failed',
   props<{ error: string; }>()
 );

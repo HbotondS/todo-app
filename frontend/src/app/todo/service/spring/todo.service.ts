@@ -24,8 +24,7 @@ export class TodoService {
   }
 
   deleteTodo(id: number): Observable<any> {
-    console.log(id);
-    return this.apollo.mutate({
+    return this.apollo.mutate<{ deleteTodo: boolean; }>({
       mutation: gql`
         mutation DeleteTodoById($id: Int!) {
           deleteTodo(id: $id)
@@ -34,6 +33,8 @@ export class TodoService {
       variables: {
         id // pass the valid ID value
       }
-    });
+    }).pipe(
+      map(response => response.data?.deleteTodo)
+    );
   }
 }
