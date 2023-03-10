@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { deleteTodo, loadTodos } from '../state/todo/todo.actions';
 import { selectAllTodos } from '../state/todo/todo.selectors';
 import { Todo } from './todo.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTodoDialog } from './components/add-todo-dialog/add-todo-dialog.component';
 
 @Component({
   selector: 'app-todo',
@@ -12,7 +14,10 @@ import { Todo } from './todo.model';
 export class TodoPage implements OnInit {
   public allTodos$ = this.store.select<Todo[]>(selectAllTodos);
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadTodos());
@@ -20,5 +25,13 @@ export class TodoPage implements OnInit {
 
   deleteTodo(id: number): void {
     this.store.dispatch(deleteTodo({ id }));
+  }
+
+  openAddTodoDialog(): void {
+    const dialogRef = this.dialog.open(AddTodoDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

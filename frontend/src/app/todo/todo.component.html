@@ -1,12 +1,16 @@
 <div class="container">
-  <mat-card style="width: 500px">
-    <h1>Todo App</h1>
+  <div class="card-container">
+    <mat-card>
+      <h1>Todo App</h1>
 
-    <mat-list role="list">
-      <div class="listItem" *ngFor="let todo of allTodos$ | async; last as last">
-        <span mat-list-item style="flex: 1">{{ todo.name }}</span>
-        <button mat-stroked-button color="warn" (click)="deleteTodo(todo.id)">Delete</button>
-      </div>
-    </mat-list>
-  </mat-card>
+      <mat-list role="list">
+        <div class="listItem" *ngFor="let todo of allTodos$ | async; last as last">
+          <span mat-list-item style="flex: 1">{{ todo.name }}</span>
+          <button mat-stroked-button color="warn" (click)="deleteTodo(todo.id)">Delete</button>
+        </div>
+      </mat-list>
+
+      <button mat-stroked-button color="primary" class="add-todo" (click)="openAddTodoDialog()">Add Todo</button>
+    </mat-card>
+  </div>
 </div>

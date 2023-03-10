@@ -7,6 +7,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatLineModule } from '@angular/material/core';
+import { AddTodoDialog } from './components/add-todo-dialog/add-todo-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -16,8 +21,12 @@ import { MatLineModule } from '@angular/material/core';
     MatCardModule,
     MatButtonToggleModule,
     MatButtonModule,
-    MatLineModule
+    MatLineModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
-  declarations: [ TodoPage ]
+  declarations: [ TodoPage, AddTodoDialog ]
 })
 export class TodoPageModule {}
