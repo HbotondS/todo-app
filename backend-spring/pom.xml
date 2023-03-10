@@ -57,6 +57,8 @@
                             <version>1.18.26</version>
                         </path>
                     </annotationProcessorPaths>
+                    <source>10</source>
+                    <target>10</target>
                 </configuration>
             </plugin>
         </plugins>
