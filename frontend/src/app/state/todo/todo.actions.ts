@@ -9,7 +9,7 @@ export const deleteTodo = createAction(
 );
 
 export const deleteTodoSuccess = createAction(
-  '[Todo API] Delete Todo Success',
+  '[Todo API] Delete Todo Success'
 );
 
 export const deleteTodoFailed = createAction(

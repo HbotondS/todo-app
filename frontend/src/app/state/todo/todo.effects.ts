@@ -12,7 +12,7 @@ import {
   loadTodosSuccess
 } from './todo.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../common/notification/notification.service';
 
 @Injectable()
 export class TodoEffects {
@@ -20,7 +20,7 @@ export class TodoEffects {
     private actions$: Actions,
     private store: Store<AppState>,
     private service: TodoService,
-    private snackBar: MatSnackBar
+    private notificationService: NotificationService
   ) {}
 
   // Run this code when a loadTodos action is dispatched
@@ -51,14 +51,11 @@ export class TodoEffects {
   loadTodosFailed$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadTodosFailed),
-      map(({ error }) =>
-          this.snackBar.open("Failed to load Todos.", "Close", {
-            horizontalPosition: "right",
-            verticalPosition: "top",
-            panelClass: 'error-snackbar',
-          })
-      )
+      map(({ error }) => {
+        console.error(error);
+        this.notificationService.error('Failed to load Todos.', 'Close');
+      })
     ),
-    { dispatch: false }
+  { dispatch: false }
   );
 }
