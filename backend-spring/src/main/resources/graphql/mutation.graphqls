@@ -1,3 +1,5 @@
 type Mutation {
-    deleteTodo(id: Int!): Boolean!
+    deleteTodo(id: String!): Boolean!
+
+    addTodo(name: String!): Todo!
 }

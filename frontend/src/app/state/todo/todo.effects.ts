@@ -4,6 +4,7 @@ import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 import { TodoService } from '../../todo/service/spring/todo.service';
 import {
+  addTodo, addTodoFailed, addTodoSuccess,
   deleteTodo,
   deleteTodoFailed,
   deleteTodoSuccess,
@@ -57,5 +58,17 @@ export class TodoEffects {
       })
     ),
   { dispatch: false }
+  );
+
+  addTodo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addTodo),
+      switchMap(({ name }) =>
+        this.service.addTodo(name).pipe(
+          map((id) => addTodoSuccess({ id })),
+          catchError(error => of(addTodoFailed({ error })))
+        )
+      )
+    )
   );
 }

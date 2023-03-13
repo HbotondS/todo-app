@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { deleteTodo, loadTodos } from '../state/todo/todo.actions';
+import { addTodo, deleteTodo, loadTodos } from '../state/todo/todo.actions';
 import { selectAllTodos } from '../state/todo/todo.selectors';
 import { Todo } from './todo.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,15 +23,17 @@ export class TodoPage implements OnInit {
     this.store.dispatch(loadTodos());
   }
 
-  deleteTodo(id: number): void {
+  deleteTodo(id: string | undefined): void {
     this.store.dispatch(deleteTodo({ id }));
   }
 
   openAddTodoDialog(): void {
     const dialogRef = this.dialog.open(AddTodoDialog);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe(name => {
+      if (name !== undefined) {
+        this.store.dispatch(addTodo({ name }));
+      }
     });
   }
 }

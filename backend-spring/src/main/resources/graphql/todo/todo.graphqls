@@ -1,4 +1,4 @@
 type Todo {
-    id: Int!
+    id: String! # MongoDB ObjectId maps to String
     name: String!
 }

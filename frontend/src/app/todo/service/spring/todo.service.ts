@@ -23,10 +23,10 @@ export class TodoService {
     );
   }
 
-  deleteTodo(id: number): Observable<any> {
+  deleteTodo(id: string | undefined): Observable<boolean | undefined> {
     return this.apollo.mutate<{ deleteTodo: boolean; }>({
       mutation: gql`
-        mutation DeleteTodoById($id: Int!) {
+        mutation DeleteTodoById($id: String!) {
           deleteTodo(id: $id)
         }
       `,
@@ -35,6 +35,23 @@ export class TodoService {
       }
     }).pipe(
       map(response => response.data?.deleteTodo)
+    );
+  }
+
+  addTodo(name: string): Observable<string | undefined> {
+    return this.apollo.mutate<{ addTodo: Todo; }>({
+      mutation: gql`
+        mutation AddTodo($name: String!) {
+          addTodo(name: $name) {
+            id
+          }
+        }
+      `,
+      variables: {
+        name
+      }
+    }).pipe(
+      map(response => response.data?.addTodo.id)
     );
   }
 }

@@ -1,6 +1,9 @@
 import { Todo } from '../../todo/todo.model';
 import { createReducer, on } from '@ngrx/store';
 import {
+  addTodo,
+  addTodoFailed,
+  addTodoSuccess,
   deleteTodo,
   deleteTodoFailed,
   deleteTodoSuccess,
@@ -49,6 +52,23 @@ export const TodoReducer = createReducer(
   })),
   // Handle todos load failure
   on(loadTodosFailed, (state, { error }) => ({
+    ...state,
+    error,
+    status: 'error'
+  })),
+
+  on(addTodo, (state, { name }) => ({
+    ...state,
+    status: 'loading',
+    todos: [ ...state.todos, { id: undefined, name } ]
+  })),
+  on(addTodoSuccess, (state, { id }) => ({
+    ...state,
+    status: 'success',
+    error: null,
+    todos: state.todos.map(todo => todo.id === undefined ? { ...todo, id } : todo)
+  })),
+  on(addTodoFailed, (state, { error }) => ({
     ...state,
     error,
     status: 'error'
